@@ -4,4 +4,3 @@ PKCS11MOCK {
   local:
 	*;
 };
-

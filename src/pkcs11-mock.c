@@ -31,7 +31,7 @@ PKCS11_MOCK_CK_OPERATION pkcs11_mock_active_operation = PKCS11_MOCK_CK_OPERATION
 CK_OBJECT_HANDLE pkcs11_mock_find_result = CKR_OBJECT_HANDLE_INVALID;
 
 
-CK_FUNCTION_LIST pkcs11_mock_functions = 
+CK_FUNCTION_LIST pkcs11_mock_functions =
 {
 	{2, 20},
 	&C_Initialize,
@@ -938,7 +938,7 @@ CK_DEFINE_FUNCTION(CK_RV, C_FindObjects)(CK_SESSION_HANDLE hSession, CK_OBJECT_H
 	switch (pkcs11_mock_find_result)
 	{
 		case PKCS11_MOCK_CK_OBJECT_HANDLE_DATA:
-			
+
 			if (ulMaxObjectCount >= 2)
 			{
 				phObject[0] = pkcs11_mock_find_result;
@@ -950,7 +950,7 @@ CK_DEFINE_FUNCTION(CK_RV, C_FindObjects)(CK_SESSION_HANDLE hSession, CK_OBJECT_H
 			break;
 
 		case CK_INVALID_HANDLE:
-			
+
 			*pulObjectCount = 0;
 
 			break;
@@ -994,7 +994,7 @@ CK_DEFINE_FUNCTION(CK_RV, C_EncryptInit)(CK_SESSION_HANDLE hSession, CK_MECHANIS
 		return CKR_CRYPTOKI_NOT_INITIALIZED;
 
 	if ((PKCS11_MOCK_CK_OPERATION_NONE != pkcs11_mock_active_operation) &&
-		(PKCS11_MOCK_CK_OPERATION_DIGEST != pkcs11_mock_active_operation) && 
+		(PKCS11_MOCK_CK_OPERATION_DIGEST != pkcs11_mock_active_operation) &&
 		(PKCS11_MOCK_CK_OPERATION_SIGN != pkcs11_mock_active_operation))
 		return CKR_OPERATION_ACTIVE;
 
@@ -1037,7 +1037,7 @@ CK_DEFINE_FUNCTION(CK_RV, C_EncryptInit)(CK_SESSION_HANDLE hSession, CK_MECHANIS
 			break;
 
 		case CKM_AES_CBC:
-			
+
 			if ((NULL == pMechanism->pParameter) || (16 != pMechanism->ulParameterLen))
 				return CKR_MECHANISM_PARAM_INVALID;
 
@@ -1200,7 +1200,7 @@ CK_DEFINE_FUNCTION(CK_RV, C_DecryptInit)(CK_SESSION_HANDLE hSession, CK_MECHANIS
 		return CKR_CRYPTOKI_NOT_INITIALIZED;
 
 	if ((PKCS11_MOCK_CK_OPERATION_NONE != pkcs11_mock_active_operation) &&
-		(PKCS11_MOCK_CK_OPERATION_DIGEST != pkcs11_mock_active_operation) && 
+		(PKCS11_MOCK_CK_OPERATION_DIGEST != pkcs11_mock_active_operation) &&
 		(PKCS11_MOCK_CK_OPERATION_VERIFY != pkcs11_mock_active_operation))
 		return CKR_OPERATION_ACTIVE;
 
@@ -1243,7 +1243,7 @@ CK_DEFINE_FUNCTION(CK_RV, C_DecryptInit)(CK_SESSION_HANDLE hSession, CK_MECHANIS
 			break;
 
 		case CKM_AES_CBC:
-			
+
 			if ((NULL == pMechanism->pParameter) || (16 != pMechanism->ulParameterLen))
 				return CKR_MECHANISM_PARAM_INVALID;
 
@@ -1406,7 +1406,7 @@ CK_DEFINE_FUNCTION(CK_RV, C_DigestInit)(CK_SESSION_HANDLE hSession, CK_MECHANISM
 		return CKR_CRYPTOKI_NOT_INITIALIZED;
 
 	if ((PKCS11_MOCK_CK_OPERATION_NONE != pkcs11_mock_active_operation) &&
-		(PKCS11_MOCK_CK_OPERATION_ENCRYPT != pkcs11_mock_active_operation) && 
+		(PKCS11_MOCK_CK_OPERATION_ENCRYPT != pkcs11_mock_active_operation) &&
 		(PKCS11_MOCK_CK_OPERATION_DECRYPT != pkcs11_mock_active_operation))
 		return CKR_OPERATION_ACTIVE;
 
@@ -1528,8 +1528,8 @@ CK_DEFINE_FUNCTION(CK_RV, C_DigestFinal)(CK_SESSION_HANDLE hSession, CK_BYTE_PTR
 	if (CK_FALSE == pkcs11_mock_initialized)
 		return CKR_CRYPTOKI_NOT_INITIALIZED;
 
-	if ((PKCS11_MOCK_CK_OPERATION_DIGEST != pkcs11_mock_active_operation) && 
-		(PKCS11_MOCK_CK_OPERATION_DIGEST_ENCRYPT != pkcs11_mock_active_operation) && 
+	if ((PKCS11_MOCK_CK_OPERATION_DIGEST != pkcs11_mock_active_operation) &&
+		(PKCS11_MOCK_CK_OPERATION_DIGEST_ENCRYPT != pkcs11_mock_active_operation) &&
 		(PKCS11_MOCK_CK_OPERATION_DECRYPT_DIGEST != pkcs11_mock_active_operation))
 		return CKR_OPERATION_NOT_INITIALIZED;
 
@@ -1678,7 +1678,7 @@ CK_DEFINE_FUNCTION(CK_RV, C_SignFinal)(CK_SESSION_HANDLE hSession, CK_BYTE_PTR p
 	if (CK_FALSE == pkcs11_mock_initialized)
 		return CKR_CRYPTOKI_NOT_INITIALIZED;
 
-	if ((PKCS11_MOCK_CK_OPERATION_SIGN != pkcs11_mock_active_operation) && 
+	if ((PKCS11_MOCK_CK_OPERATION_SIGN != pkcs11_mock_active_operation) &&
 		(PKCS11_MOCK_CK_OPERATION_SIGN_ENCRYPT != pkcs11_mock_active_operation))
 		return CKR_OPERATION_NOT_INITIALIZED;
 
@@ -2441,7 +2441,7 @@ CK_DEFINE_FUNCTION(CK_RV, C_GetFunctionStatus)(CK_SESSION_HANDLE hSession)
 
 	if ((CK_FALSE == pkcs11_mock_session_opened) || (PKCS11_MOCK_CK_SESSION_ID != hSession))
 		return CKR_SESSION_HANDLE_INVALID;
-	
+
 	return CKR_FUNCTION_NOT_PARALLEL;
 }
 
@@ -2453,7 +2453,7 @@ CK_DEFINE_FUNCTION(CK_RV, C_CancelFunction)(CK_SESSION_HANDLE hSession)
 
 	if ((CK_FALSE == pkcs11_mock_session_opened) || (PKCS11_MOCK_CK_SESSION_ID != hSession))
 		return CKR_SESSION_HANDLE_INVALID;
-	
+
 	return CKR_FUNCTION_NOT_PARALLEL;
 }
 
