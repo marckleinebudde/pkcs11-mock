@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /*
  *  Copyright 2015-2017 The Pkcs11Interop Project
  *
